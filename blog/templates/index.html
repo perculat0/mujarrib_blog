@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{{ config.BLOG_TITLE if config.BLOG_TITLE else "Blog" }}</title>
+</head>
+<body>
+    <h1>{{ config.BLOG_TITLE if config.BLOG_TITLE else "Blog" }}</h1>
+    <ul>
+        {% for post in posts %}
+        <li><a href="/post/{{ post }}">{{ post }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
