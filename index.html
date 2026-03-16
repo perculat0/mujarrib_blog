@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>⊗</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  html, body {
+    width: 100%; height: 100%;
+    background: #080808;
+    color: #c8c8d8;
+    font-family: Georgia, 'Times New Roman', serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .field {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  /* Grain */
+  .field::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  .sigil-wrap {
+    position: relative;
+    width: min(280px, 70vw);
+    height: min(280px, 70vw);
+    margin-bottom: 3rem;
+  }
+
+  .sigil-wrap svg {
+    width: 100%;
+    height: 100%;
+    animation: breathe 7s ease-in-out infinite;
+  }
+
+  @keyframes breathe {
+    0%, 100% { opacity: 0.6; transform: scale(1) rotate(0deg); }
+    50% { opacity: 1; transform: scale(1.03) rotate(0.8deg); }
+  }
+
+  @keyframes rotate-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .outer-ring {
+    animation: rotate-slow 120s linear infinite;
+    transform-origin: center;
+  }
+
+  .question {
+    font-size: clamp(1rem, 4vw, 1.3rem);
+    font-style: italic;
+    color: #a8a8b8;
+    letter-spacing: 0.05em;
+    text-align: center;
+    padding: 0 2rem;
+    line-height: 1.6;
+    max-width: 340px;
+    opacity: 0;
+    animation: fadeup 2s ease 0.8s forwards;
+  }
+
+  @keyframes fadeup {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .glyph {
+    position: absolute;
+    bottom: 2rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    color: #2a2a35;
+    font-family: monospace;
+    animation: fadeup 3s ease 2s forwards;
+    opacity: 0;
+  }
+</style>
+</head>
+<body>
+<div class="field">
+  <div class="sigil-wrap">
+    <svg viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="glow">
+          <feGaussianBlur stdDeviation="2" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+
+      <!-- Outer rotating ring with marks -->
+      <g class="outer-ring">
+        <circle cx="140" cy="140" r="130" fill="none" stroke="#1a1a22" stroke-width="1"/>
+        <!-- 8 marks for 8 years -->
+        <line x1="140" y1="8" x2="140" y2="18" stroke="#3a3a50" stroke-width="1.5"/>
+        <line x1="140" y1="262" x2="140" y2="272" stroke="#3a3a50" stroke-width="1.5"/>
+        <line x1="8" y1="140" x2="18" y2="140" stroke="#3a3a50" stroke-width="1.5"/>
+        <line x1="262" y1="140" x2="272" y2="140" stroke="#3a3a50" stroke-width="1.5"/>
+        <line x1="48" y1="48" x2="55" y2="55" stroke="#2a2a38" stroke-width="1"/>
+        <line x1="225" y1="225" x2="232" y2="232" stroke="#2a2a38" stroke-width="1"/>
+        <line x1="225" y1="48" x2="232" y2="55" stroke="#2a2a38" stroke-width="1"/>
+        <line x1="48" y1="225" x2="55" y2="232" stroke="#2a2a38" stroke-width="1"/>
+      </g>
+
+      <!-- Middle circle -->
+      <circle cx="140" cy="140" r="100" fill="none" stroke="#22222e" stroke-width="0.5"/>
+
+      <!-- Sigil lines — from distilled letters of OGNI RICOMPENSA VALE LA SOFFERENZA -->
+      <!-- Letters: G N R C M P S V L F Z (unique consonants) -->
+      <!-- Mapped to 9 points on inner circle (r=72) -->
+      <!-- Points at angles 0, 40, 80, 120, 160, 200, 240, 280, 320 -->
+      <g stroke="#6a6a9a" stroke-width="0.9" fill="none" opacity="0.7">
+        <!-- p0: 140,68 (top) -->
+        <!-- p1: 186,75 -->
+        <!-- p2: 212,116 -->
+        <!-- p3: 212,164 -->
+        <!-- p4: 186,205 -->
+        <!-- p5: 140,212 -->
+        <!-- p6: 94,205 -->
+        <!-- p7: 68,164 -->
+        <!-- p8: 68,116 -->
+        <!-- p9: 94,75 -->
+        <line x1="140" y1="68" x2="212" y2="164"/>
+        <line x1="212" y1="164" x2="94" y2="75"/>
+        <line x1="94" y1="75" x2="186" y2="205"/>
+        <line x1="186" y1="205" x2="68" y2="116"/>
+        <line x1="68" y1="116" x2="212" y2="116"/>
+        <line x1="212" y1="116" x2="94" y2="205"/>
+        <line x1="94" y1="205" x2="186" y2="75"/>
+        <line x1="186" y1="75" x2="68" y2="164"/>
+        <line x1="68" y1="164" x2="140" y2="212"/>
+        <line x1="140" y1="212" x2="140" y2="68"/>
+      </g>
+
+      <!-- Nodes -->
+      <g fill="#c87941" opacity="0.9">
+        <circle cx="140" cy="68" r="2.5"/>
+        <circle cx="186" cy="75" r="2"/>
+        <circle cx="212" cy="116" r="2"/>
+        <circle cx="212" cy="164" r="2"/>
+        <circle cx="186" cy="205" r="2"/>
+        <circle cx="140" cy="212" r="2.5"/>
+        <circle cx="94" cy="205" r="2"/>
+        <circle cx="68" cy="164" r="2"/>
+        <circle cx="68" cy="116" r="2"/>
+        <circle cx="94" cy="75" r="2"/>
+      </g>
+
+      <!-- Inner cross -->
+      <g stroke="#8888cc" stroke-width="0.6" opacity="0.5">
+        <line x1="140" y1="110" x2="140" y2="170"/>
+        <line x1="110" y1="140" x2="170" y2="140"/>
+      </g>
+
+      <!-- Center -->
+      <circle cx="140" cy="140" r="8" fill="none" stroke="#8888cc" stroke-width="0.8" opacity="0.8"/>
+      <circle cx="140" cy="140" r="3" fill="#c87941" opacity="0.9"/>
+
+      <!-- م glyph -->
+      <text x="140" y="145" text-anchor="middle" font-size="10" fill="#c87941" opacity="0.7" font-family="serif">م</text>
+
+    </svg>
+  </div>
+
+  <div class="question">Ogni ricompensa vale la sofferenza?</div>
+  <div class="glyph">⊗ &nbsp; مجرب &nbsp; ⊗</div>
+</div>
+</body>
+</html>
